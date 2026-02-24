@@ -1,4 +1,12 @@
 const playerBtns = document.querySelectorAll("button");
+const scoreDiv = document.querySelector(".score-div");
+const humanOptionSpan = document.querySelector(".human-option");
+const computerOptionSpan = document.querySelector(".computer-option");
+const humanScoreSpan = document.querySelector(".human-score");
+const computerScoreSpan = document.querySelector(".computer-score");
+
+let computerScore = 0;
+let humanScore = 0;
 
 const getComputerChoice = () => {
   let computerChoice = Math.floor(Math.random() * 3);
@@ -8,33 +16,46 @@ const getComputerChoice = () => {
   else return "scissors";
 };
 
-// let computerScore = 0;
-// let humanScore = 0;
+const updateHumanScore = () => {
+  humanScore += 1;
+  humanScoreSpan.textContent = humanScore;
+};
+
+const updateComputerScore = () => {
+  computerScore += 1;
+  computerScoreSpan.textContent = computerScore;
+};
+
+const updateBothCompAndHumanScore = () => {
+  updateComputerScore();
+  updateHumanScore();
+};
 
 const playRound = (humanChoice, computerChoice) => {
-  // humanChoice = humanChoice.toLowerCase();
+  humanOptionSpan.textContent = humanChoice;
+  computerOptionSpan.textContent = computerChoice;
 
   if (humanChoice === "rock" && computerChoice === "paper") {
     console.log("You lose! paper beats rock");
-    computerScore += 1;
+    updateComputerScore();
   } else if (humanChoice === "rock" && computerChoice === "scissors") {
     console.log("You win! rock beats scissors");
-    humanScore += 1;
+    updateHumanScore();
   } else if (humanChoice === "paper" && computerChoice === "rock") {
     console.log("You win! paper beats rock");
-    humanScore += 1;
+    updateHumanScore();
   } else if (humanChoice === "paper" && computerChoice === "scissors") {
     console.log("You lose! scissors beats paper");
-    computerScore += 1;
+    updateComputerScore();
   } else if (humanChoice === "scissors" && computerChoice === "rock") {
     console.log("You lose! rock beats scissors");
-    computerScore += 1;
+    updateComputerScore();
   } else if (humanChoice === "scissors" && computerChoice === "paper") {
     console.log("You win! scissors beats paper");
-    humanScore += 1;
+    updateHumanScore();
   } else {
-    computerScore += 1;
-    humanScore += 1;
+    console.log(`${humanChoice} : ${computerChoice} DRAW!!!`);
+    updateBothCompAndHumanScore();
   }
 };
 
@@ -52,6 +73,7 @@ const playRound = (humanChoice, computerChoice) => {
 playerBtns.forEach((button) => {
   button.addEventListener("click", (e) => {
     const humanSelection = e.target.textContent;
-    console.log(humanSelection);
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
   });
 });
