@@ -42,12 +42,6 @@ const playGame = () => {
     }
   };
 
-  for (let i = 1; i <= 5; i++) {
-    let humanSelection = getHumanChoice();
-    let ComputerSelection = getComputerChoice();
-    playRound(humanSelection, ComputerSelection);
-  }
-
   if (humanScore > computerScore) {
     console.log("You've won!");
   } else if (humanScore < computerScore) {
