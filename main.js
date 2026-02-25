@@ -4,6 +4,7 @@ const humanOptionSpan = document.querySelector(".human-option");
 const computerOptionSpan = document.querySelector(".computer-option");
 const humanScoreSpan = document.querySelector(".human-score");
 const computerScoreSpan = document.querySelector(".computer-score");
+const winnerTag = document.querySelector(".winner");
 
 let computerScore = 0;
 let humanScore = 0;
@@ -19,16 +20,31 @@ const getComputerChoice = () => {
 const updateHumanScore = () => {
   humanScore += 1;
   humanScoreSpan.textContent = humanScore;
+  checkForWinner();
 };
 
 const updateComputerScore = () => {
   computerScore += 1;
   computerScoreSpan.textContent = computerScore;
+  checkForWinner();
 };
 
 const updateBothCompAndHumanScore = () => {
   updateComputerScore();
   updateHumanScore();
+  checkForWinner();
+};
+
+const checkForWinner = () => {
+  if (humanScore === 5) {
+    winnerTag.textContent = "Winner player";
+  }
+  if (computerScore === 5) {
+    winnerTag.textContent = "Winner computer";
+  }
+  if (humanScore === 5 && computerScore === 5) {
+    winnerTag.textContent = "Draw!!";
+  }
 };
 
 const playRound = (humanChoice, computerChoice) => {
@@ -58,17 +74,6 @@ const playRound = (humanChoice, computerChoice) => {
     updateBothCompAndHumanScore();
   }
 };
-
-// if (humanScore > computerScore) {
-//   console.log("You've won!");
-// } else if (humanScore < computerScore) {
-//   console.log("You've lost!");
-// } else {
-//   console.log("Draw!!");
-// }
-
-// console.log("Your score: " + humanScore);
-// console.log("Computers score: " + computerScore);
 
 playerBtns.forEach((button) => {
   button.addEventListener("click", (e) => {

@@ -7,18 +7,26 @@
     <title>Rock-paper-scisssors: Odinproject</title>
   </head>
   <body>
-    <div class="result-div">
-      <div class="score-div">
-        <span class="human-score">0</span> :
-        <span class="computer-score">0</span>
-      </div>
-      <div class="selected-options">
-        <span class="human-option"></span>
-        <span>vs</span>
-        <span class="computer-option"></span>
+    <div class="container">
+      <div class="game-div">
+        <div class="score-div">
+          <span class="human-score">0</span> :
+          <span class="computer-score">0</span>
+        </div>
+        <div class="winner-announcement">
+          <h1 class="winner"></h1>
+        </div>
+        <div class="selected-options">
+          <span class="human-option"></span>
+          <span>vs</span>
+          <span class="computer-option"></span>
+        </div>
+        <div>
+          <button>rock</button><button>paper</button><button>scissors</button>
+        </div>
       </div>
     </div>
-    <button>rock</button><button>paper</button><button>scissors</button>
+
     <script src="main.js"></script>
   </body>
 </html>
